@@ -1,0 +1,47 @@
+application: qzeng249
+version: 1
+runtime: php55
+api_version: 1
+threadsafe: yes
+
+
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /public/stylesheets/(.*)
+  static_files: public/stylesheets/\1
+  upload: public/stylesheets/(.*)
+  mime_type: text/css
+
+- url: /(photo.php.*)$
+  script: public/\1
+
+- url: /public/(.+\.php)(.*)$
+  script: public/\1
+
+- url: /public/admin/(.*)$
+  script: public/admin/index.php
+
+- url: /public/admin/(.+\.php)(.*)$
+  script: public/admin/\1
+
+- url: /includes/(.*\.php)
+  static_files: includes/\1
+  upload: includes/(.*\.php)
+  application_readable: true
+  mime_type: application/php
+
+- url: /public/layouts/(.*\.php)
+  static_files: public/layouts/\1
+  upload: public/layouts/(.*\.php)
+  application_readable: true
+  mime_type: application/php
+
+- url: /main.php
+  script: main.php
+
+- url: /.*
+  script: public/index.php
+
